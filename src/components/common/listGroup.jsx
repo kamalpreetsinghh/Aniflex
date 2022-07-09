@@ -5,7 +5,7 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-import { indigo, red } from "@mui/material/colors";
+import { indigo } from "@mui/material/colors";
 
 const ListGroup = ({ items, selectedItem, onItemSelect }) => {
   const selectedButtonStyle = {
@@ -26,7 +26,7 @@ const ListGroup = ({ items, selectedItem, onItemSelect }) => {
             <ListItemButton
               component="button"
               sx={
-                item._id == selectedItem._id
+                item._id === selectedItem._id
                   ? selectedButtonStyle
                   : { borderRadius: 1 }
               }

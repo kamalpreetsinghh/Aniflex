@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
-import CustomPagination from "./common/customPagination";
+import CustomPagination from "./common/CustomPagination";
 import paginate from "../utils/paginate";
-import MoviesTable from "./moviesTable";
-import List from "./common/listGroup";
-import { Typography, Container, Grid, Stack } from "@mui/material";
+import MoviesTable from "./MoviesTable";
+import List from "./common/ListGroup";
+import { Typography, Container, Grid, Box } from "@mui/material";
 import _ from "lodash";
 
 const Movies = () => {
@@ -41,15 +41,7 @@ const Movies = () => {
     setPageNumber(1);
   };
 
-  const handleSort = (column) => {
-    const newSortBy = { ...sortBy };
-    if (newSortBy.column === column) {
-      newSortBy.order = newSortBy.order === "asc" ? "desc" : "asc";
-    } else {
-      newSortBy.column = column;
-      newSortBy.order = "asc";
-    }
-
+  const handleSort = (newSortBy) => {
     setSortBy(newSortBy);
   };
 
@@ -89,18 +81,19 @@ const Movies = () => {
           </Typography>
           <MoviesTable
             movies={displayMovies}
+            sortBy={sortBy}
             onDelete={handleDelete}
             onLike={handleLike}
             onSort={handleSort}
           />
-          <Stack>
+          <Box display="flex" justifyContent="center">
             <CustomPagination
               itemsCount={filteredMovies.length}
               pageNumber={pageNumber}
               pageSize={pageSize}
               onPageChange={handlePageChange}
             />
-          </Stack>
+          </Box>
         </Grid>
       </Grid>
     </Container>
